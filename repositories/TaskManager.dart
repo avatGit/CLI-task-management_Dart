@@ -28,10 +28,15 @@ class TaskManager implements Repository<Task> {
     currentTask.add(newTask.tojson());
 
     // Convertit la liste en String JSON avec une indentation
-    const JsonEncoder encoder = JsonEncoder.withIndent('  ');
-    String updatedJsonContent = encoder.convert(currentTask);
+    try {
+      const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+      String updatedJsonContent = encoder.convert(currentTask);
 
-    await file.writeAsString(updatedJsonContent);
+      await file.writeAsString(updatedJsonContent);
+      print("Tache ajouté avec succes!");
+    } catch (e) {
+      print(e);
+    }
   }
 
   /*   @override

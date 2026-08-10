@@ -1,12 +1,12 @@
 class Task {
   final String title;
-  final List<String> priority;
+  final String priority;
   final DateTime deadLine;
   final bool isDone;
 
   Task({
     required this.title,
-    this.priority = const ['low', 'medium', 'high'],
+    required this.priority,
     this.isDone = false,
     DateTime? deadLine,
   }) : deadLine = deadLine ?? DateTime.now();
@@ -14,7 +14,7 @@ class Task {
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
       title: json['title'] as String,
-      priority: json['priority'] as List<String>,
+      priority: json['priority'] as String,
       deadLine: DateTime.parse(json['deadLine'] as String),
       isDone: json['isDone'] as bool,
     );
