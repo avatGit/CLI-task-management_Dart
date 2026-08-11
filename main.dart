@@ -248,16 +248,21 @@ class Menu {
 
 void main() async {
   File file = File('tasks.json');
-  if (file.exists() == false) {
-    file = new File('./tasks.json');
+
+  if (!await file.exists()) {
+    file = File('./tasks.json');
   }
+
+  if (!await file.exists()) {
+    await file.create(recursive: true);
+    await file.writeAsString('[]');
+  }
+
   /* on doit matcher avec les priority string. "1" --> "low" et print Basse a l'utilisateur */
 
-  if (await file.exists()) {
-    try {
-      await Menu.menu(file);
-    } catch (e, stackTrace) {
-      print('Erreur: $e StackTrace: $stackTrace');
-    }
+  try {
+    await Menu.menu(file);
+  } catch (e, stackTrace) {
+    print('Erreur: $e StackTrace: $stackTrace');
   }
 }
