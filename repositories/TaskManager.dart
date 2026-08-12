@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import '../Repository.dart';
+import '../interfaces/task_repository.dart';
 import '../models/Task.dart';
 import '../models/TaskExceptions.dart';
 
-class TaskManager implements Repository<Task> {
+class TaskManager implements TaskRepository {
   Future<List<Task>> _readTasks(File file) async {
     final List<Task> emptyList = [];
     final String fileContent = file.readAsStringSync();

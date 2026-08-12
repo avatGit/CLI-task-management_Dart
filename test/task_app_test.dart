@@ -131,5 +131,30 @@ void main() {
       final tasksAfter = await manager.listAll('createdAt', tempFile);
       expect(tasksAfter.first.isDone, isTrue);
     });
+
+    test('deleteTask supprime la tache correcte', () async {
+      final task1 = Task(title: 'Keep me', priority: 'Basse');
+      final task2 = Task(title: 'Delete me', priority: 'Moyenne');
+      await manager.addTask(task1, tempFile);
+      await manager.addTask(task2, tempFile);
+
+      final allTasks = await manager.listAll('createdAt', tempFile);
+      expect(allTasks, hasLength(2));
+
+      await manager.deleteTask(allTasks[1].id, tempFile);
+      final remaining = await manager.listAll('createdAt', tempFile);
+      expect(remaining, hasLength(1));
+      expect(remaining.first.title, equals('Keep me'));
+    });
+
+    test('addTask lance TaskAlreadyExistsException pour doublon', () async {
+      final task = Task(title: 'Duplicate', priority: 'Basse');
+      await manager.addTask(task, tempFile);
+
+      expect(
+        () async => await manager.addTask(task, tempFile),
+        throwsA(isA<TaskAlreadyExistsException>()),
+      );
+    });
   });
 }
