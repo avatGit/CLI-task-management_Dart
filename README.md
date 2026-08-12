@@ -1,24 +1,24 @@
-# CLI Task Management App
+# Application CLI de gestion de tâches
 
-A simple Dart CLI application for managing tasks with local JSON persistence.
+Une application Dart en ligne de commande pour gérer des tâches avec persistance locale au format JSON.
 
-## Features
+## Fonctionnalités
 
-- Add task with title, priority, and optional deadline
-- List tasks sorted by creation date or priority
-- Mark task as done
-- Delete task
-- Persist tasks to `tasks.json`
+- Ajouter une tâche avec un titre, une priorité et un délai optionnel
+- Lister les tâches triées par date de création ou par priorité
+- Marquer une tâche comme terminée
+- Supprimer une tâche
+- Persister les tâches dans `tasks.json`
 
 ## Architecture
 
-- `main.dart` contains the CLI menu and user interaction
-- `models/` contains domain models and custom exceptions
-- `repositories/` contains the task repository implementation
-- `interfaces/` contains the explicit task repository interface
-- `test/` contains unit tests
+- `main.dart` contient le menu CLI et l’interaction utilisateur
+- `models/` contient les modèles métier et les exceptions personnalisées
+- `repositories/` contient l’implémentation du gestionnaire de tâches
+- `interfaces/` contient l’interface explicite du dépôt de tâches
+- `test/` contient les tests unitaires
 
-## Getting Started
+## Démarrage
 
 ```bash
 cd "c:\Users\s\Documents\CLI task management app"
@@ -26,7 +26,7 @@ dart pub get
 dart run main.dart
 ```
 
-## Running Tests
+## Exécution des tests
 
 ```bash
 dart test
